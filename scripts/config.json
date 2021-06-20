@@ -1,0 +1,29 @@
+{
+    "raw_data_location": "../rawData/",
+    "processed_data_location": "../data",
+    "departments": [
+        "AE",
+        "AG",
+        "AR",
+        "BT",
+        "CE",
+        "CH",
+        "CS",
+        "CY",
+        "EC",
+        "EE",
+        "EX",
+        "IE",
+        "IM",
+        "GG",
+        "HS",
+        "MA",
+        "ME",
+        "MF",
+        "MT",
+        "MI",
+        "NA",
+        "PH"
+    ],
+    "final_results_location": "../final_data/"
+}
