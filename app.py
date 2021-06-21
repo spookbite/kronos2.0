@@ -2,17 +2,17 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
-import seaborn as sn
+import seaborn as sns
 import numpy as np
 import altair as alt
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 @st.cache
 def get_data():
-    return pd.read_csv('au20_new.csv')
+    return pd.read_csv('testing/18ae_processed.csv')
 
 df = get_data()
-st.title("Kronos v2.0 - the gradekeeper")
+st.title("Kronos v2.0 - The Gradekeeper")
 
 st.write("")
 
@@ -48,7 +48,9 @@ df_num.drop(['course'], axis = 1, inplace=True)
 number_of_students = st.checkbox("Show Graph w.r.t the Number of Students")
 if number_of_students:
     xyz = df_num.transpose()
-    xyz.rename(columns = {'Autumn20':'autumn20'}, inplace = True)
+    #xyz.reset_index(inplace=True)
+    #xyz.rename(columns = {'index':'grades'}, inplace = True)
+    #sns.lineplot(data=xyz, x="Grades", y="# of students", hue="month")
     #st.write(xyz.dtypes)
     st.dataframe(xyz)
     #st.line_chart(xyz)
@@ -57,10 +59,15 @@ if number_of_students:
 
 pct_of_students = st.checkbox("Show Graph w.r.t the Percentage of Students")
 if pct_of_students:
-    xyz = df_num.transpose()
-    #st.dataframe(xyz)
-    #st.line_chart(xyz)
-    xyz.plot.line()
+    abc = df_num.transpose()
+    colNames = []
+    for (columnName, columnData) in abc.iteritems():
+        colNames.append(columnName)
+        abc['%' + columnName] = (abc[columnName] / abc[columnName].sum()) * 100
+    abc.drop(colNames, axis = 1, inplace=True)
+    st.dataframe(abc)
+    #st.line_chart(abc)
+    abc.plot.line()
     st.pyplot()
 
 #df_plot = pd.DataFrame(df_new, columns = ['Ex', 'A', 'B', 'C', 'D', 'P', 'F'])
