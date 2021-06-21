@@ -109,7 +109,7 @@ text-align: center;
 }
 </style>
 <div class="footer">
-<p>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
+<p style="text-align: center;">Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
 </div>
 """
 st.markdown(footer,unsafe_allow_html=True)
