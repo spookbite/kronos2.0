@@ -5,7 +5,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 @st.cache
 def get_data():
-    return pd.read_csv(r'final_data\final_grades.csv')
+    return pd.read_csv('final_data/final_grades.csv')
 
 df = get_data()
 st.title("Kronos v2.0 - The Gradekeeper")
