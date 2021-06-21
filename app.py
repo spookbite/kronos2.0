@@ -1,10 +1,5 @@
 import pandas as pd
 import streamlit as st
-import plotly.express as px
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
-import altair as alt
 #st.set_page_config(layout="wide")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
