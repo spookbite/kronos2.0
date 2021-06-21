@@ -10,7 +10,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 @st.cache
 def get_data():
-    return pd.read_csv(r'final_data\final_grades.csv')
+    return pd.read_csv('../final_data/final_grades.csv')
 
 df = get_data()
 st.title("Kronos v2.0 - The Gradekeeper")
@@ -88,3 +88,33 @@ st.pyplot()
 
 #df_plot = pd.DataFrame(df_new, columns = ['Ex', 'A', 'B', 'C', 'D', 'P', 'F'])
 #st.bar_chart(df_new['Ex','A','B','C','D','F','P'])
+
+footer="""<style>
+a:link , a:visited{
+color: blue;
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:hover,  a:active {
+color: red;
+background-color: transparent;
+text-decoration: underline;
+}
+
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: white;
+color: black;
+text-align: center;
+}
+</style>
+<div class="footer">
+<p>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
+</div>
+"""
+st.markdown(footer,unsafe_allow_html=True)
+#st.markdown("<h4 style='text-align: center;'><b><i>Contribute to this project on <a href = 'http://github.com/spookbite/kronos2.0'>Github</a></i></b></h4>", unsafe_allow_html=True)
