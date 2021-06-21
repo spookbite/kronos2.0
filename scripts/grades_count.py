@@ -1,7 +1,7 @@
 import pandas as pd
 
 #csv generated from json
-df = pd.read_csv('../testing/aefinal.csv')
+df = pd.read_csv('data\merged.csv')
 
 df.dropna(axis = 0, inplace = True)
 df.reset_index(inplace = True)
@@ -56,4 +56,4 @@ big_oof['P'] = new['P']
 big_oof['F'] = new['F']
 big_oof['session'] = session_list
 
-big_oof.to_csv('../testing/18ae_processed.csv', header = True, index = False)
+big_oof.to_csv(r'final_data\final_grades.csv', header = True, index = False)

@@ -1,6 +1,6 @@
 {
-    "raw_data_location": "../rawData/",
-    "processed_data_location": "../data",
+    "raw_data_location": "rawData",
+    "processed_data_location": "data",
     "departments": [
         "AE",
         "AG",
@@ -25,5 +25,10 @@
         "NA",
         "PH"
     ],
-    "final_results_location": "../final_data/"
+    "years" : [
+        17,
+        18,
+        19
+    ],
+    "final_results_location": "final_data"
 }
