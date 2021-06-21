@@ -23,7 +23,7 @@ st.write("")
 
 st.sidebar.title("Enter Course Code here:")
 
-course = df['course']
+course = df['course'].unique()
 course_choice = st.sidebar.selectbox('', course)
 df_new = df[df['course'] == course_choice].copy()
 df_new.reset_index(inplace=True)
