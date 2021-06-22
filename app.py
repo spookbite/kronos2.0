@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import seaborn as sns
 import matplotlib.pyplot as plt
 #st.set_page_config(layout="wide")
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -53,14 +54,16 @@ st.markdown("<h2 style='text-align: center;'><b>Plot w.r.t the Number of Student
 st.write("")
 st.write("")
 xyz = df_num.transpose()
-#xyz.reset_index(inplace=True)
-#xyz.rename(columns = {'index':'grades'}, inplace = True)
-#sns.lineplot(data=xyz, x="Grades", y="# of students", hue="session")
-#st.write(xyz.dtypes)
 st.dataframe(xyz)
 st.write("")
-#st.line_chart(xyz)
-xyz.plot.line(figsize=(10,8))
+xyz.reset_index(inplace=True)
+xyz.rename(columns = {'index':'grades'}, inplace = True)
+xyz = xyz.melt('grades', var_name='academic_session',  value_name='# of students')
+
+#c = alt.Chart(xyz).mark_line().encode(x='grades',y='# of students')
+#st.altair_chart(c, use_container_width=True)
+
+sns.factorplot(data=xyz, x="grades", y="# of students", hue="academic_session")
 st.pyplot(use_container_width = False)
 st.write("")
 st.write("")
@@ -75,15 +78,18 @@ colNames = []
 for (columnName, columnData) in abc.iteritems():
     colNames.append(columnName)
     abc[columnName] = (abc[columnName] / abc[columnName].sum()) * 100
-#abc.drop(colNames, axis = 1, inplace=True)
+
 st.dataframe(abc)
 st.write("")
-#st.line_chart(abc)
-abc.plot.line()
-st.pyplot()
+abc.reset_index(inplace=True)
+abc.rename(columns = {'index':'grades'}, inplace = True)
+abc = abc.melt('grades', var_name='academic_session',  value_name='% of students')
 
-#df_plot = pd.DataFrame(df_new, columns = ['Ex', 'A', 'B', 'C', 'D', 'P', 'F'])
-#st.bar_chart(df_new['Ex','A','B','C','D','F','P'])
+sns.factorplot(data=abc, x="grades", y="% of students", hue="academic_session")
+st.pyplot(use_container_width = False)
+
+st.write("")
+st.write("")
 
 footer="""<style>
 a:link , a:visited{
@@ -109,7 +115,7 @@ text-align: center;
 }
 </style>
 <div class="footer">
-<p style="text-align: center;">Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
+<p>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
 </div>
 """
 st.markdown(footer,unsafe_allow_html=True)
