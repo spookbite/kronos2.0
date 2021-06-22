@@ -4,4 +4,4 @@ This webapp displays previous year's grade distribution. It has been hosted with
 
 You can go [here](https://share.streamlit.io/spookbite/kronos2.0/main/app.py) for the live version of the project.
 
-## This Project has been inspired from [Kronos](https://kronos.metakgp.org/).
+### This Project has been inspired from [Kronos](https://kronos.metakgp.org/).
