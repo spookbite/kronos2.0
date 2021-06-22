@@ -3,6 +3,7 @@ import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
 #st.set_page_config(layout="wide")
+st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 @st.cache
