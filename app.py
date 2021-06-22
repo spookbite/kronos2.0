@@ -65,7 +65,7 @@ xyz = xyz.melt('grades', var_name='academic_session',  value_name='# of students
 #st.altair_chart(c, use_container_width=True)
 
 sns.factorplot(data=xyz, x="grades", y="# of students", hue="academic_session")
-st.pyplot(use_container_width = False)
+st.pyplot()
 st.write("")
 st.write("")
 
@@ -87,7 +87,7 @@ abc.rename(columns = {'index':'grades'}, inplace = True)
 abc = abc.melt('grades', var_name='academic_session',  value_name='% of students')
 
 sns.factorplot(data=abc, x="grades", y="% of students", hue="academic_session")
-st.pyplot(use_container_width = False)
+st.pyplot()
 
 st.write("")
 st.write("")
