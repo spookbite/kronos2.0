@@ -38,7 +38,7 @@ st.sidebar.write(f'*{course_choice}*')
 st.write(f'**Course chosen :** *{course_choice}*') #, **Session chosen :** *{session_choice}*')
 
 st.write("")
-st.dataframe(df_new)
+#st.dataframe(df_new)
 
 st.write("")
 st.write("")
