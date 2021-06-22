@@ -1,5 +1,3 @@
-headless = true
-
 [theme]
 primaryColor="#d33682"
 backgroundColor="#002b36"
