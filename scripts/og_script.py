@@ -30,7 +30,7 @@ def json_to_csv(roll_year):
 
                 subject_data = stud[roll][0]
                 #year should be roll year - 1
-                year = roll_year-1
+                year = roll_year
                 prev = 0
                 for sub in subject_data:
                     subject_no.append(sub["subno"] + '-' + sub["subname"])
@@ -39,9 +39,9 @@ def json_to_csv(roll_year):
                     if int(sub["semno"]) != prev:
                         if prev % 2 == 0:
                             prev += 1
-                            year += 1
                         else:
                             prev += 1
+                            year += 1
 
                     if int(sub["semno"]) % 2 == 0:
                         subject_session.append("Spring" + str(year))
@@ -109,7 +109,7 @@ def merge_year():
     for i in allResults:
         w.writerow(i)
 
-#json_to_csv(19)
-#merge_csv(19)
+#json_to_csv(17)
+#merge_csv(17)
 #merge_year()
 
