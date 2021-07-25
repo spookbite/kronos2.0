@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 #st.set_page_config(layout="wide")
 st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -91,6 +92,18 @@ st.pyplot()
 
 st.write("")
 st.write("")
+
+course_to_get = course_choice[:7]
+
+pdf_file = f"https://spookbite.github.io/kronos_syllabus/{course_to_get}.pdf"
+
+syllabus = """
+<h3 style='text-align: left;'><b>Syllabus for the course :</b></h3>
+
+"""
+st.markdown(syllabus, unsafe_allow_html=True)
+st.markdown(pdf_file, unsafe_allow_html=True)
+
 
 footer="""<style>
 a:link , a:visited{
