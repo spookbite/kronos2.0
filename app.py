@@ -56,6 +56,7 @@ st.markdown("<h2 style='text-align: center;'><b>Plot w.r.t the Number of Student
 st.write("")
 st.write("")
 xyz = df_num.transpose()
+xyz = xyz.sort_index(axis=1)
 st.dataframe(xyz)
 st.write("")
 xyz.reset_index(inplace=True)
