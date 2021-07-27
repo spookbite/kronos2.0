@@ -39,7 +39,6 @@ st.sidebar.write(f'*{course_choice}*')
 
 st.write("")
 
-
 df_new.set_index('session', inplace = True)
 df_num = df_new.copy()
 df_num.drop(['course'], axis = 1, inplace=True)
