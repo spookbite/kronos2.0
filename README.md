@@ -34,9 +34,18 @@ streamlit run app.py
 ```
 
 ## With Docker
+
+### Pull the Docker image
+```shell
+docker pull spookbite/kronosv2:2.0
+```
+
+### Run the container
 ```shell
 docker run -p 8501:8501 spookbite/kronosv2
 ```
+
+### You can change the {PORT}:8501 to your desired PORT.
 
 ## Credits
 
