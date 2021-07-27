@@ -4,11 +4,12 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 import os
-import webbrowser
 
 #st.set_page_config(layout="wide")
 st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
 st.set_option('deprecation.showPyplotGlobalUse', False)
+head = """<script async defer data-website-id="f7b646ab-c9b9-4995-bd4c-14e1b9590000" src="https://umami.mukul-mehta.in/umami.js"></script>"""
+st.markdown(head, unsafe_allow_html=True)
 
 @st.cache
 def get_data():
