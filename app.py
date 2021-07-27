@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import os
 import webbrowser
+
 #st.set_page_config(layout="wide")
 st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -123,17 +124,24 @@ st.write("")
 st.write("")
 
 course_to_get = course_choice[:7]
-
 url = f"https://spookbite.github.io/kronos_syllabus/{course_to_get}.pdf"
+
+test_syll = """from bokeh.models.widgets import Div
+if st.button('Get Syllabus for the Course : '):
+    js = "window.open({url})"  # New tab or window
+    js = "window.location.href = 'https://share.streamlit.io/spookbite/kronos2.0/main/app.py'"  # Current tab
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)"""
 
 syllabus = """
 <h3 style='text-align: left;'><b>Syllabus for the course :</b></h3>
 
 """
-#st.markdown(syllabus, unsafe_allow_html=True)
-if st.button(f'Get Syllabus for the Course : {course_choice}'):
-    webbrowser.open_new_tab(url)
-#st.markdown(pdf_file, unsafe_allow_html=True)
+st.markdown(syllabus, unsafe_allow_html=True)
+#if st.button(f'Get Syllabus for the Course : {course_choice}'):
+    #webbrowser.open_new_tab(url)
+st.markdown(url, unsafe_allow_html=True)
 
 
 footer="""<style>
