@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
 import os
+import webbrowser
 #st.set_page_config(layout="wide")
 st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -33,16 +34,9 @@ st.sidebar.write("")
 st.sidebar.write("")
 st.sidebar.write(f'**Course chosen :**')
 st.sidebar.write(f'*{course_choice}*')
-#session = df["session"].unique()
-#session_choice = st.sidebar.selectbox('Select the Session: ', session)
-#grades = df_new[df_new['session'] == session]
-#symbol = symbol_df['Symbol'].unique()
-st.write(f'**Course chosen :** *{course_choice}*') #, **Session chosen :** *{session_choice}*')
 
-st.write("")
-#st.dataframe(df_new)
+#st.write(f'**Course chosen :** *{course_choice}*') #, **Session chosen :** *{session_choice}*')
 
-st.write("")
 st.write("")
 
 
@@ -131,14 +125,16 @@ st.write("")
 
 course_to_get = course_choice[:7]
 
-pdf_file = f"https://spookbite.github.io/kronos_syllabus/{course_to_get}.pdf"
+url = f"https://spookbite.github.io/kronos_syllabus/{course_to_get}.pdf"
 
 syllabus = """
 <h3 style='text-align: left;'><b>Syllabus for the course :</b></h3>
 
 """
-st.markdown(syllabus, unsafe_allow_html=True)
-st.markdown(pdf_file, unsafe_allow_html=True)
+#st.markdown(syllabus, unsafe_allow_html=True)
+if st.button(f'Get Syllabus for the Course : {course_choice}'):
+    webbrowser.open_new_tab(url)
+#st.markdown(pdf_file, unsafe_allow_html=True)
 
 
 footer="""<style>
