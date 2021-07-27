@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 import os
 #st.set_page_config(layout="wide")
 st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
@@ -55,19 +56,35 @@ df_num.drop(['course'], axis = 1, inplace=True)
 st.markdown("<h2 style='text-align: center;'><b>Plot w.r.t the Number of Students</b></h2>", unsafe_allow_html=True)
 st.write("")
 st.write("")
+
 xyz = df_num.transpose()
 xyz = xyz.sort_index(axis=1)
-st.dataframe(xyz)
-st.write("")
-xyz.reset_index(inplace=True)
-xyz.rename(columns = {'index':'grades'}, inplace = True)
-xyz = xyz.melt('grades', var_name='academic_session',  value_name='# of students')
 
-#c = alt.Chart(xyz).mark_line().encode(x='grades',y='# of students')
-#st.altair_chart(c, use_container_width=True)
+fig = px.line(xyz, x=xyz.index, y = xyz.columns, width = 800, height = 600)
+fig.update_layout(template="plotly_dark")
+fig.update_layout(
+    title=f"Grade Distribution for the Course : {course_choice[:7]}",
+    xaxis_title="Grades",
+    yaxis_title="Number of Students",
+    font=dict(
+        family="Courier New, monospace",
+        size=16,
+        color="#7f7f7f"
+    )
+)
+st.plotly_chart(fig)
 
-sns.factorplot(data=xyz, x="grades", y="# of students", hue="academic_session")
-st.pyplot()
+number_of_students = st.checkbox("Show data w.r.t # of students")
+if number_of_students:
+    st.write("")
+    st.dataframe(xyz)
+
+#xyz.reset_index(inplace=True)
+#xyz.rename(columns = {'index':'grades'}, inplace = True)
+#xyz = xyz.melt('grades', var_name='academic_session',  value_name='# of students')
+#sns.factorplot(data=xyz, x="grades", y="# of students", hue="academic_session")
+#st.pyplot()
+
 st.write("")
 st.write("")
 
@@ -82,14 +99,32 @@ for (columnName, columnData) in abc.iteritems():
     colNames.append(columnName)
     abc[columnName] = (abc[columnName] / abc[columnName].sum()) * 100
 
-st.dataframe(abc)
-st.write("")
-abc.reset_index(inplace=True)
-abc.rename(columns = {'index':'grades'}, inplace = True)
-abc = abc.melt('grades', var_name='academic_session',  value_name='% of students')
 
-sns.factorplot(data=abc, x="grades", y="% of students", hue="academic_session")
-st.pyplot()
+fig2 = px.line(abc, x=abc.index, y = abc.columns, width = 800, height = 600)
+fig2.update_layout(template="plotly_dark")
+fig2.update_layout(
+    title=f"Grade Distribution for the Course : {course_choice[:7]}",
+    xaxis_title="Grades",
+    yaxis_title="Percentage of Students",
+    font=dict(
+        family="Courier New, monospace",
+        size=16,
+        color="#7f7f7f"
+    )
+)
+st.plotly_chart(fig2)
+
+perct_of_students = st.checkbox("Show data w.r.t % of students")
+if perct_of_students:
+    st.write("")
+    st.dataframe(abc)
+
+#abc.reset_index(inplace=True)
+#abc.rename(columns = {'index':'grades'}, inplace = True)
+#abc = abc.melt('grades', var_name='academic_session',  value_name='% of students')
+
+#sns.factorplot(data=abc, x="grades", y="% of students", hue="academic_session")
+#st.pyplot()
 
 st.write("")
 st.write("")
