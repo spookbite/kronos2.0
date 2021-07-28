@@ -126,7 +126,7 @@ st.write("")
 st.write("")
 
 course_to_get = course_choice[:7]
-url = f"https://spookbite.github.io/kronos_syllabus/{course_to_get}.pdf"
+url = f"https://palkitlohia.me/kronos_syllabus/{course_to_get}.pdf"
 
 test_syll = """from bokeh.models.widgets import Div
 if st.button('Get Syllabus for the Course : '):

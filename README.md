@@ -33,7 +33,7 @@ Run the following code on your terminal:
 streamlit run app.py
 ```
 
-## With Docker
+## Using Docker
 
 ### Pull the Docker image
 ```shell
