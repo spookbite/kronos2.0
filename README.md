@@ -37,7 +37,7 @@ streamlit run app.py
 
 ### Pull the Docker image
 ```shell
-docker pull spookbite/kronosv2:2.0
+docker pull spookbite/kronosv2:latest
 ```
 
 ### Run the container
