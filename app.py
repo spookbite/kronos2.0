@@ -7,39 +7,35 @@ import os
 import streamlit.components.v1 as components
 
 #st.set_page_config(layout="wide")
-st.set_page_config(page_title='Kronos2.0', initial_sidebar_state = 'auto')
+st.set_page_config(page_title='Kronos2.0', layout = 'wide')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 head = """<script async defer data-website-id="f7b646ab-c9b9-4995-bd4c-14e1b9590000" src="https://umami.mukul-mehta.in/umami.js"></script>"""
 components.html(head, height=0)
 
 @st.cache
 def get_data():
-    return pd.read_csv('final_data/final_grades.csv')
+    return pd.read_csv(r'final_data/final_grades.csv')
 
 df = get_data()
-st.title("Kronos v2.0 - The Gradekeeper")
+st.markdown("<h1 style='text-align: center;'><b>Kronos v2.0 - The Gradekeeper</b></h1>", unsafe_allow_html=True)
+#st.title("Kronos v2.0 - The Gradekeeper")
 
 st.write("")
 
 #st.dataframe(df)
 st.write("")
-st.write("")
 
-st.sidebar.title("Enter Course Code here:")
+#st.sidebar.title("Enter Course Code here:")
 
 course = df['course'].unique()
-course_choice = st.sidebar.selectbox('', course)
+course_choice = st.selectbox('Enter Course Code here', course)
 df_new = df[df['course'] == course_choice].copy()
 df_new.reset_index(inplace=True)
 df_new.drop(['index'], axis = 1, inplace=True)
-st.sidebar.write("")
-st.sidebar.write("")
-st.sidebar.write("")
-st.sidebar.write(f'**Course chosen :**')
-st.sidebar.write(f'*{course_choice}*')
 
-#st.write(f'**Course chosen :** *{course_choice}*') #, **Session chosen :** *{session_choice}*')
-
+st.write("")
+url =r"**Syllabus for the course :** " + f"https://palkitlohia.me/kronos_syllabus/{course_choice}.pdf"
+st.markdown(url, unsafe_allow_html=True)
 st.write("")
 
 df_new.set_index('session', inplace = True)
@@ -56,8 +52,9 @@ st.write("")
 xyz = df_num.transpose()
 xyz = xyz.sort_index(axis=1)
 
-fig = px.line(xyz, x=xyz.index, y = xyz.columns, width = 800, height = 600)
+fig = px.line(xyz, x=xyz.index, y = xyz.columns, width = 1400, height = 600)
 fig.update_layout(template="plotly_dark")
+fig.update_traces(mode="markers+lines", hovertemplate=None)
 fig.update_layout(
     title=f"Grade Distribution for the Course : {course_choice[:7]}",
     xaxis_title="Grades",
@@ -66,11 +63,12 @@ fig.update_layout(
         family="Courier New, monospace",
         size=16,
         color="#7f7f7f"
-    )
+    ),
+    hovermode="x"
 )
 st.plotly_chart(fig)
 
-number_of_students = st.checkbox("Show data w.r.t # of students")
+number_of_students = st.checkbox("Show data w.r.t number of students")
 if number_of_students:
     st.write("")
     st.dataframe(xyz)
@@ -96,8 +94,9 @@ for (columnName, columnData) in abc.iteritems():
     abc[columnName] = (abc[columnName] / abc[columnName].sum()) * 100
 
 
-fig2 = px.line(abc, x=abc.index, y = abc.columns, width = 800, height = 600)
+fig2 = px.line(abc, x=abc.index, y = abc.columns, width = 1400, height = 600)
 fig2.update_layout(template="plotly_dark")
+fig.update_traces(mode="markers+lines", hovertemplate=None)
 fig2.update_layout(
     title=f"Grade Distribution for the Course : {course_choice[:7]}",
     xaxis_title="Grades",
@@ -106,11 +105,12 @@ fig2.update_layout(
         family="Courier New, monospace",
         size=16,
         color="#7f7f7f"
-    )
+    ),
+    hovermode="x"
 )
 st.plotly_chart(fig2)
 
-perct_of_students = st.checkbox("Show data w.r.t % of students")
+perct_of_students = st.checkbox("Show data w.r.t percentage of students")
 if perct_of_students:
     st.write("")
     st.dataframe(abc)
@@ -124,26 +124,6 @@ if perct_of_students:
 
 st.write("")
 st.write("")
-
-course_to_get = course_choice[:7]
-url = f"https://palkitlohia.me/kronos_syllabus/{course_to_get}.pdf"
-
-test_syll = """from bokeh.models.widgets import Div
-if st.button('Get Syllabus for the Course : '):
-    js = "window.open({url})"  # New tab or window
-    js = "window.location.href = 'https://share.streamlit.io/spookbite/kronos2.0/main/app.py'"  # Current tab
-    html = '<img src onerror="{}">'.format(js)
-    div = Div(text=html)
-    st.bokeh_chart(div)"""
-
-syllabus = """
-<h3 style='text-align: left;'><b>Syllabus for the course :</b></h3>
-
-"""
-st.markdown(syllabus, unsafe_allow_html=True)
-#if st.button(f'Get Syllabus for the Course : {course_choice}'):
-    #webbrowser.open_new_tab(url)
-st.markdown(url, unsafe_allow_html=True)
 
 
 footer="""<style>
