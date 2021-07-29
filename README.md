@@ -4,6 +4,8 @@ This webapp displays previous year's grade distribution. It has been hosted with
 
 You can go [here](https://share.streamlit.io/spookbite/kronos2.0/main/app.py) for the live version of the project. If this doesn't work, you can go [here](https://kronosv2.herokuapp.com/) as well. Apologies if both doesn't work, issue will be rectified soon :)
 
+You can find the container image [here](https://hub.docker.com/repository/docker/spookbite/kronosv2).
+
 # Setup 
 
 ## (Without Docker)

@@ -1,3 +1,4 @@
+import json
 import pandas as pd
 import streamlit as st
 import seaborn as sns
@@ -15,6 +16,13 @@ components.html(head, height=0)
 @st.cache
 def get_data():
     return pd.read_csv(r'final_data/final_grades.csv')
+
+@st.cache
+def get_json():
+    f = open('data\data_file.json')
+    data = json.load(f)
+
+    return data
 
 df = get_data()
 st.markdown("<h1 style='text-align: center;'><b>Kronos v2.0 - The Gradekeeper</b></h1>", unsafe_allow_html=True)
@@ -34,8 +42,17 @@ df_new.reset_index(inplace=True)
 df_new.drop(['index'], axis = 1, inplace=True)
 
 st.write("")
-url =r"**Syllabus for the course :** " + f"https://palkitlohia.me/kronos_syllabus/{course_choice}.pdf"
+js = get_json()
+course_code = course_choice[:7]
+try:
+    meta_ext = js[course_code]
+except:
+    meta_ext = "/w/Main_Page"
+meta_wiki = "https://wiki.metakgp.org" + meta_ext
+url =r"**Syllabus for the course :** " + f"https://palkitlohia.me/kronos_syllabus/{course_code}.pdf" 
+meta = r"**MetaKGP wiki for the course :** " + meta_wiki
 st.markdown(url, unsafe_allow_html=True)
+st.markdown(meta, unsafe_allow_html=True)
 st.write("")
 
 df_new.set_index('session', inplace = True)
@@ -57,6 +74,7 @@ fig.update_layout(template="plotly_dark")
 fig.update_traces(mode="markers+lines", hovertemplate=None)
 fig.update_layout(
     title=f"Grade Distribution for the Course : {course_choice[:7]}",
+    title_x=0.5,
     xaxis_title="Grades",
     yaxis_title="Number of Students",
     font=dict(
@@ -99,6 +117,7 @@ fig2.update_layout(template="plotly_dark")
 fig2.update_traces(mode="markers+lines", hovertemplate=None)
 fig2.update_layout(
     title=f"Grade Distribution for the Course : {course_choice[:7]}",
+    title_x=0.5,
     xaxis_title="Grades",
     yaxis_title="Percentage of Students",
     font=dict(
