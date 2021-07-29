@@ -19,7 +19,7 @@ def get_data():
 
 @st.cache
 def get_json():
-    f = open('data\data_file.json')
+    f = open(r'data/data_file.json')
     data = json.load(f)
 
     return data
