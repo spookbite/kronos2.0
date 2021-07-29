@@ -96,7 +96,7 @@ for (columnName, columnData) in abc.iteritems():
 
 fig2 = px.line(abc, x=abc.index, y = abc.columns, width = 1400, height = 600)
 fig2.update_layout(template="plotly_dark")
-fig.update_traces(mode="markers+lines", hovertemplate=None)
+fig2.update_traces(mode="markers+lines", hovertemplate=None)
 fig2.update_layout(
     title=f"Grade Distribution for the Course : {course_choice[:7]}",
     xaxis_title="Grades",
