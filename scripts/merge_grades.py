@@ -6,7 +6,7 @@ def parse_json(filename):
     data = json.load(f)
     return data
 
-def getGrades(filename=r'final_data\final_grades.csv'):
+def getGrades(filename=r'data\final_grades.csv'):
     f = pd.read_csv(filename)
     return f
 
@@ -65,12 +65,12 @@ def add_names():
                 count += 1
         if len(grades.loc[i,'course']) == 10:
             grades.loc[i,'course'] = grades.loc[i,'course'][:7]
-    grades.to_csv(r'final_data\final_grades.csv', index = False, header = True)
+    grades.to_csv(r'data\final_grades.csv', index = False, header = True)
 
 def merge_grades():
 
     old = pd.read_csv(r'data\oldGrades.csv')
-    new = pd.read_csv(r'final_data\final_grades.csv')
+    new = pd.read_csv(r'data\final_grades.csv')
 
     for i in range(len(new)):
         new.loc[i,"course"] = new.loc[i,"course"][:7]
@@ -86,7 +86,7 @@ def merge_grades():
     final_data = new.append(old, ignore_index = True)
     print(len(final_data), len(final_data.columns))
     final_data.drop(['tbc'], axis = 1, inplace=True)
-    final_data.to_csv(r'final_data\final_grades.csv', index=False, header=True)
+    final_data.to_csv(r'data\final_grades.csv', index=False, header=True)
 
 #code_to_name()
 #merge_jsons()

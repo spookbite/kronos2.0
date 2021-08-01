@@ -56,4 +56,4 @@ big_oof['P'] = new['P']
 big_oof['F'] = new['F']
 big_oof['session'] = session_list
 
-big_oof.to_csv(r'final_data\final_grades.csv', header = True, index = False)
+big_oof.to_csv(r'data\final_grades.csv', header = True, index = False)
