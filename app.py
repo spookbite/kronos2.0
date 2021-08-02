@@ -86,10 +86,20 @@ fig.update_layout(
 )
 st.plotly_chart(fig)
 
+
 number_of_students = st.checkbox("Show data w.r.t number of students")
-if number_of_students:
+col1, col2, col3 = st.beta_columns([2,6,2])
+
+with col1:
     st.write("")
-    st.dataframe(xyz)
+
+with col2:
+    if number_of_students:
+        st.write("")
+        st.write(xyz)
+
+with col3:
+    st.write("")
 
 #xyz.reset_index(inplace=True)
 #xyz.rename(columns = {'index':'grades'}, inplace = True)
@@ -130,9 +140,18 @@ fig2.update_layout(
 st.plotly_chart(fig2)
 
 perct_of_students = st.checkbox("Show data w.r.t percentage of students")
-if perct_of_students:
+col1, col2, col3 = st.beta_columns([2,6,2])
+
+with col1:
     st.write("")
-    st.dataframe(abc)
+
+with col2:
+    if perct_of_students:
+        st.write("")
+        st.write(xyz)
+
+with col3:
+    st.write("")
 
 #abc.reset_index(inplace=True)
 #abc.rename(columns = {'index':'grades'}, inplace = True)
@@ -169,7 +188,7 @@ text-align: center;
 }
 </style>
 <div class="footer">
-<p style='text-align: center;'>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
+<p style='text-align: center;font-size: 110%;'>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
 </div>
 """
 st.markdown(footer,unsafe_allow_html=True)

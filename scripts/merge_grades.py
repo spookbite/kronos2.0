@@ -88,7 +88,13 @@ def add_names():
             grades.loc[i,'course'] = grades.loc[i,'course'][:7]
     grades.to_csv(r'data\final_grades.csv', index = False, header = True)
 
+def sort_csv():
+    grades = getGrades()
+    rslt_df = grades.sort_values(by = ['course', 'session'])
+    rslt_df.to_csv(r'data\final_grades.csv', index = False, header = True)
+
 #code_to_name()
 #merge_jsons()
 #merge_grades()
 #add_names()
+sort_csv()
