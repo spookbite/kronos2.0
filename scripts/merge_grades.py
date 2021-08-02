@@ -23,7 +23,7 @@ def code_to_name():
         f.write(str(names))
 
 def merge_jsons():
-    old = parse_json(r"kronosv1\oldCourseMapped.json")
+    old = parse_json(r"kronosv1_data\oldCourseMapped.json")
     new = parse_json(r"data\newCourseMapped.json")
     old_ls = []
     new_ls = []
@@ -49,24 +49,6 @@ def merge_jsons():
     with open(r"data\courseMapped.json", 'wt') as f:
         f.write(str(old))
 
-def add_names():
-    data = parse_json(r"data\courseMapped.json")
-    grades = getGrades()
-    codes = []
-    for subj in data:
-        codes.append(subj)
-
-    count = 0
-    for i in range(len(grades)):
-        subj = grades.loc[i,'course']
-        for code in codes:
-            if subj == code:
-                grades.loc[i,'course'] = grades.loc[i,'course'] + " : " + data[code]
-                count += 1
-        if len(grades.loc[i,'course']) == 10:
-            grades.loc[i,'course'] = grades.loc[i,'course'][:7]
-    grades.to_csv(r'data\final_grades.csv', index = False, header = True)
-
 def merge_grades():
 
     old = pd.read_csv(r'data\oldGrades.csv')
@@ -88,7 +70,25 @@ def merge_grades():
     final_data.drop(['tbc'], axis = 1, inplace=True)
     final_data.to_csv(r'data\final_grades.csv', index=False, header=True)
 
+def add_names():
+    data = parse_json(r"data\courseMapped.json")
+    grades = getGrades()
+    codes = []
+    for subj in data:
+        codes.append(subj)
+
+    count = 0
+    for i in range(len(grades)):
+        subj = grades.loc[i,'course']
+        for code in codes:
+            if subj == code:
+                grades.loc[i,'course'] = grades.loc[i,'course'] + " : " + data[code]
+                count += 1
+        if len(grades.loc[i,'course']) == 10:
+            grades.loc[i,'course'] = grades.loc[i,'course'][:7]
+    grades.to_csv(r'data\final_grades.csv', index = False, header = True)
+
 #code_to_name()
 #merge_jsons()
+#merge_grades()
 #add_names()
-merge_grades()
