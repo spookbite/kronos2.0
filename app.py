@@ -15,7 +15,7 @@ components.html(head, height=0)
 
 @st.cache
 def get_data():
-    return pd.read_csv(r'final_data/final_grades.csv')
+    return pd.read_csv(r'data/final_grades.csv')
 
 @st.cache
 def get_json():
