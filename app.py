@@ -190,7 +190,7 @@ text-align: center;
 }
 </style>
 <div class="footer">
-<p style='text-align: center;font-size: 110%;'>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed with ❤ by kronos2.0 </p>
+<p style='text-align: center;font-size: 110%;'>Contribute to this project on <a href="http://github.com/spookbite/kronos2.0" target="_blank"> Github</a> | Developed by <a href="https://metakgp.github.io/" target="_blank"> MetaKGP</a> with ♥ </p>
 </div>
 """
 st.markdown(footer,unsafe_allow_html=True)
