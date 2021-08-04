@@ -13,7 +13,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 head = """<script async defer data-website-id="f7b646ab-c9b9-4995-bd4c-14e1b9590000" src="https://umami.mukul-mehta.in/umami.js"></script>"""
 components.html(head, height=0)
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def get_data():
     return pd.read_csv(r'data/final_grades.csv')
 
@@ -35,6 +35,8 @@ st.write("")
 
 #st.sidebar.title("Enter Course Code here:")
 
+indexNames = df[ df['course'] == "19IST02 : Aeroelasticity and Unsteady Aerodynamics in Turbomachinery"].index
+df.drop(indexNames , inplace=True)
 course = df['course'].unique()
 course_choice = st.selectbox('Enter Course Code here', course)
 df_new = df[df['course'] == course_choice].copy()
