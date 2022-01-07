@@ -150,7 +150,7 @@ with col1:
 with col2:
     if perct_of_students:
         st.write("")
-        st.write(xyz)
+        st.write(abc)
 
 with col3:
     st.write("")
