@@ -51,7 +51,7 @@ try:
 except:
     meta_ext = "/w/Main_Page"
 meta_wiki = "https://wiki.metakgp.org" + meta_ext
-url =r"**Syllabus for the course :** " + f"https://palkitlohia.me/kronos_syllabus/{course_code}.pdf" 
+url =r"**Syllabus for the course :** " + f"https://spookbite.github.io/kronos_syllabus/{course_code}.pdf" 
 meta = r"**MetaKGP wiki for the course :** " + meta_wiki
 st.markdown(url, unsafe_allow_html=True)
 st.markdown(meta, unsafe_allow_html=True)
