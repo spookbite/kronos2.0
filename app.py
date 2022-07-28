@@ -90,7 +90,7 @@ st.plotly_chart(fig)
 
 
 number_of_students = st.checkbox("Show data w.r.t number of students")
-col1, col2, col3 = st.beta_columns([2,6,2])
+col1, col2, col3 = st.columns([2,6,2])
 
 with col1:
     st.write("")
@@ -142,7 +142,7 @@ fig2.update_layout(
 st.plotly_chart(fig2)
 
 perct_of_students = st.checkbox("Show data w.r.t percentage of students")
-col1, col2, col3 = st.beta_columns([2,6,2])
+col1, col2, col3 = st.columns([2,6,2])
 
 with col1:
     st.write("")
