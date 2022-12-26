@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import os
 import streamlit.components.v1 as components
+from PIL import Image
 
 #st.set_page_config(layout="wide")
 st.set_page_config(page_title='Kronos2.0',page_icon = 'favicon.ico',layout = 'wide')
@@ -30,15 +31,25 @@ st.markdown("<h1 style='text-align: center;'><b>Kronos v2.0 - The Gradekeeper</b
 
 st.write("")
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write("")
+
+with col2:
+    image = Image.open('bean.jpg')
+    st.image(image, caption='Hang in there XD')
+
+with col3:
+    st.write("")
+
+
 #st.dataframe(df)
 st.write("")
 
-#st.sidebar.title("Enter Course Code here:")
 
-indexNames = df[ df['course'] == "19IST02 : Aeroelasticity and Unsteady Aerodynamics in Turbomachinery"].index
-df.drop(indexNames , inplace=True)
 course = df['course'].unique()
-course_choice = st.selectbox('Enter Course Code here', course)
+course_choice = st.selectbox('Enter Course Code here (Note: The course codes have been updated for a few courses, so try all possible course codes)', course)
 df_new = df[df['course'] == course_choice].copy()
 df_new.reset_index(inplace=True)
 df_new.drop(['index'], axis = 1, inplace=True)
@@ -90,7 +101,11 @@ st.plotly_chart(fig)
 
 
 number_of_students = st.checkbox("Show data w.r.t number of students")
-col1, col2, col3 = st.columns([2,6,2])
+# if number_of_students:
+#     st.write("")
+#     st.write(xyz)
+
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.write("")
@@ -142,7 +157,8 @@ fig2.update_layout(
 st.plotly_chart(fig2)
 
 perct_of_students = st.checkbox("Show data w.r.t percentage of students")
-col1, col2, col3 = st.columns([2,6,2])
+
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.write("")
@@ -172,13 +188,11 @@ color: blue;
 background-color: transparent;
 text-decoration: underline;
 }
-
 a:hover,  a:active {
 color: red;
 background-color: transparent;
 text-decoration: underline;
 }
-
 .footer {
 position: fixed;
 left: 0;
